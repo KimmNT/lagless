@@ -6,5 +6,9 @@
   {
     "title": "About",
     "path": "/about-us"
+  },
+  {
+    "title": "Bingo",
+    "path": "/bingo"
   }
 ]
