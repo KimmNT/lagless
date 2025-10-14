@@ -64,22 +64,22 @@ export default function Bingo() {
 
   const toggleCell = (r: number, c: number) => {
     const value = board[r][c];
-    const cellId = `${r}-${c}`;
+    // const cellId = `${r}-${c}`;
 
     // Prevent FREE spaces from toggling
     if (value === "FREE") return;
 
     // Prevent marking uncalled numbers
-    if (!calledNumbers.includes(value)) {
-      const cell = document.querySelector<HTMLButtonElement>(
-        `[data-cell="${cellId}"]`
-      );
-      if (cell) {
-        cell.classList.add("invalid");
-        setTimeout(() => cell.classList.remove("invalid"), 200);
-      }
-      return;
-    }
+    // if (!calledNumbers.includes(value)) {
+    //   const cell = document.querySelector<HTMLButtonElement>(
+    //     `[data-cell="${cellId}"]`
+    //   );
+    //   if (cell) {
+    //     cell.classList.add("invalid");
+    //     setTimeout(() => cell.classList.remove("invalid"), 200);
+    //   }
+    //   return;
+    // }
 
     const newMarked = marked.map((row, i) =>
       row.map((cell, j) => (i === r && j === c ? !cell : cell))
@@ -125,12 +125,12 @@ export default function Bingo() {
   }, [calledNumbers]);
 
   // Auto-call a number every few seconds
-  useEffect(() => {
-    const result = setTimeout(() => {
-      numberRandomCaller();
-    }, 3500);
-    return () => clearTimeout(result);
-  }, [numberRandomCaller]);
+  // useEffect(() => {
+  //   const result = setTimeout(() => {
+  //     numberRandomCaller();
+  //   }, 3500);
+  //   return () => clearTimeout(result);
+  // }, [numberRandomCaller]);
 
   const headers = ["B", "I", "N", "G", "O"];
 
