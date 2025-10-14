@@ -1,0 +1,127 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bingo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  background: #f9fafb;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+
+  width: 45%;
+
+  .bingo-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #111827;
+  }
+
+  .bingo-board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .bingo-header {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      color: #2563eb;
+      padding: 0.5rem 0;
+    }
+
+    .bingo-cell {
+      width: 70px;
+      height: 70px;
+      font-size: 1.25rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      background-color: #fff;
+      color: #374151;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+        border-color: #9ca3af;
+      }
+
+      &.marked {
+        background-color: #22c55e;
+        color: #fff;
+        border-color: #15803d;
+      }
+    }
+  }
+
+  .bingo-message {
+    font-size: 2rem;
+    color: #16a34a;
+    margin-top: 1.5rem;
+    font-weight: 600;
+  }
+
+  .reset-btn {
+    margin-top: 2rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #3b82f6;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #2563eb;
+    }
+  }
+}
+
+.call-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  background: #10b981;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: #059669;
+  }
+}
+
+.called-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin: 1rem 0;
+}
+
+.called-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 400px;
+  margin-top: 1rem;
+}
+
+.called-item {
+  background: #fef3c7;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.9rem;
+}

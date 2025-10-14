@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BingoIndexRouteImport } from './routes/bingo/index'
 import { Route as AboutUsIndexRouteImport } from './routes/about-us/index'
 
 const IndexRoute = IndexRouteImport.update({
@@ -17,6 +18,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+const BingoIndexRoute = BingoIndexRouteImport.update({
+  id: '/bingo/',
+  path: '/bingo/',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/bingo/index.lazy').then((d) => d.Route))
 const AboutUsIndexRoute = AboutUsIndexRouteImport.update({
   id: '/about-us/',
   path: '/about-us/',
@@ -28,27 +34,31 @@ const AboutUsIndexRoute = AboutUsIndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsIndexRoute
+  '/bingo': typeof BingoIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsIndexRoute
+  '/bingo': typeof BingoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us/': typeof AboutUsIndexRoute
+  '/bingo/': typeof BingoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about-us'
+  fullPaths: '/' | '/about-us' | '/bingo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about-us'
-  id: '__root__' | '/' | '/about-us/'
+  to: '/' | '/about-us' | '/bingo'
+  id: '__root__' | '/' | '/about-us/' | '/bingo/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsIndexRoute: typeof AboutUsIndexRoute
+  BingoIndexRoute: typeof BingoIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +68,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bingo/': {
+      id: '/bingo/'
+      path: '/bingo'
+      fullPath: '/bingo'
+      preLoaderRoute: typeof BingoIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about-us/': {
@@ -73,6 +90,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsIndexRoute: AboutUsIndexRoute,
+  BingoIndexRoute: BingoIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
