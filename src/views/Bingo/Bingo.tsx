@@ -129,12 +129,6 @@ export default function Bingo() {
   return (
     <div className="container">
       <div className="bingo-container">
-        <h1 className="bingo-title">🎱 Bingo Caller</h1>
-
-        <button className="call-btn" onClick={numberRandomCaller}>
-          Call Next Number
-        </button>
-
         {lastNumber && <h2 className="called-number">{lastNumber}</h2>}
 
         <div className="called-list">
