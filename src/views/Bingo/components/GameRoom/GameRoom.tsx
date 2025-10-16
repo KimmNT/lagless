@@ -25,7 +25,7 @@ export default function GameRoom({
 
   const isMobile = useIsMobile();
 
-  const calledNumbersToShow = isMobile ? 12 : 24;
+  const calledNumbersToShow = isMobile ? 10 : 100;
 
   useEffect(() => {
     const socket = initSocket();
@@ -86,51 +86,70 @@ export default function GameRoom({
           ))}
         </div>
       </div>
-      <div className={style.GameControl}>
-        {isHost && (
-          <button className={style.CallButton} onClick={callRandom}>
-            Call Number
-          </button>
-        )}
-        {calledNumbers.length > 0 ? (
-          <div className={style.NumberList}>
-            {calledNumbers
-              .slice()
-              .reverse()
-              .slice(0, calledNumbersToShow)
-              .map((num, index) => (
-                <div
-                  key={index}
-                  className={clsx(style.Number, index === 0 && style.Latest)}
-                >
-                  {num}
+      <div className={style.GameArea}>
+        <div className={style.GameControl}>
+          {isHost && (
+            <button className={style.CallButton} onClick={callRandom}>
+              Call Number
+            </button>
+          )}
+          {calledNumbers.length > 0 ? (
+            <div className={style.CalledNumbers}>
+              <div className={style.NumberList}>
+                {calledNumbers
+                  .slice()
+                  .reverse()
+                  .slice(0, 1)
+                  .map((num, index) => (
+                    <div
+                      key={index}
+                      className={clsx(
+                        style.Number,
+                        index === 0 && style.Latest
+                      )}
+                    >
+                      {num}
+                    </div>
+                  ))}
+              </div>
+              <div className={style.NumberList}>
+                {calledNumbers
+                  .slice()
+                  .reverse()
+                  .slice(1, calledNumbersToShow)
+                  .map((num, index) => (
+                    <div key={index} className={clsx(style.Number)}>
+                      {num}
+                    </div>
+                  ))}
+              </div>
+            </div>
+          ) : (
+            <>
+              {isHost ? (
+                <div className={style.StartGame}>
+                  Call a number to start the game
                 </div>
-              ))}
+              ) : (
+                <div className={style.StartGame}>
+                  Waiting for host to call a number...
+                </div>
+              )}
+            </>
+          )}
+        </div>
+
+        <div className={style.BoardSection}>
+          <div className={style.BoardContainer}>
+            <Board roomId={roomId} calledNumbers={calledNumbers} />
           </div>
-        ) : (
-          <>
-            {isHost ? (
-              <div className={style.StartGame}>
-                Call a number to start the game
-              </div>
-            ) : (
-              <div className={style.StartGame}>
-                Waiting for host to call a number...
-              </div>
-            )}
-          </>
-        )}
+          {!winner && (
+            <button className={style.BingoButton} onClick={claimBingo}>
+              Claim Bingo 🎉
+            </button>
+          )}
+        </div>
       </div>
-
-      <div className={style.BoardContainer}>
-        <Board roomId={roomId} calledNumbers={calledNumbers} />
-      </div>
-
-      {!winner && (
-        <button className={style.BingoButton} onClick={claimBingo}>
-          Claim Bingo 🎉
-        </button>
-      )}
 
       <Dialog
         title="Bingoooooo!"
