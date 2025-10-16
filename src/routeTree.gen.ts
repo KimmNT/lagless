@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TestIndexRouteImport } from './routes/test/index'
 import { Route as BingoIndexRouteImport } from './routes/bingo/index'
 import { Route as AboutUsIndexRouteImport } from './routes/about-us/index'
 
@@ -18,6 +19,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+const TestIndexRoute = TestIndexRouteImport.update({
+  id: '/test/',
+  path: '/test/',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/test/index.lazy').then((d) => d.Route))
 const BingoIndexRoute = BingoIndexRouteImport.update({
   id: '/bingo/',
   path: '/bingo/',
@@ -35,30 +41,34 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsIndexRoute
   '/bingo': typeof BingoIndexRoute
+  '/test': typeof TestIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsIndexRoute
   '/bingo': typeof BingoIndexRoute
+  '/test': typeof TestIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us/': typeof AboutUsIndexRoute
   '/bingo/': typeof BingoIndexRoute
+  '/test/': typeof TestIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about-us' | '/bingo'
+  fullPaths: '/' | '/about-us' | '/bingo' | '/test'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about-us' | '/bingo'
-  id: '__root__' | '/' | '/about-us/' | '/bingo/'
+  to: '/' | '/about-us' | '/bingo' | '/test'
+  id: '__root__' | '/' | '/about-us/' | '/bingo/' | '/test/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsIndexRoute: typeof AboutUsIndexRoute
   BingoIndexRoute: typeof BingoIndexRoute
+  TestIndexRoute: typeof TestIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,6 +78,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/test/': {
+      id: '/test/'
+      path: '/test'
+      fullPath: '/test'
+      preLoaderRoute: typeof TestIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bingo/': {
@@ -91,6 +108,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsIndexRoute: AboutUsIndexRoute,
   BingoIndexRoute: BingoIndexRoute,
+  TestIndexRoute: TestIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

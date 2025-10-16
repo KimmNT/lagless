@@ -1,0 +1,43 @@
+@use "@/style/utils.scss";
+@use "@/style/colors.scss";
+
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem 5rem;
+  background: var(--color-bg);
+  border: none;
+  border-radius: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background: var(--color-bg-hover, var(--color-bg));
+  }
+
+  &.Primary {
+    background: var(--color-bg);
+    color: white;
+  }
+
+  &.Secondary {
+    background: transparent;
+    border: 2px solid var(--color-bg);
+    color: var(--color-text);
+
+    &:hover {
+      background: var(--color-bg);
+      color: white;
+    }
+  }
+}
+
+.Text {
+  font-size: 1.25rem;
+}
+
+.Icon {
+  color: var(--color-text);
+}

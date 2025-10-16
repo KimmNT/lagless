@@ -1,0 +1,22 @@
+@use "../../style/utils.scss";
+@use "../../style/colors.scss";
+
+.BingoLogo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: #2563eb;
+  background: linear-gradient(
+    50deg,
+    rgba(37, 99, 235, 1) 0%,
+    rgba(250, 204, 21, 1) 100%
+  );
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+
+  .Item {
+    font-size: 3rem;
+    color: white;
+  }
+}
