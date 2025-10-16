@@ -4,18 +4,19 @@
 .GameRoom {
   width: fit-content;
   min-width: 50%;
-  height: 90%;
+  height: 95%;
   display: flex;
   background-color: var(--color-primary);
   flex-direction: column;
   border-radius: 1rem;
   position: relative;
-  padding: 2rem;
+  padding: 2rem 4rem;
   gap: 2rem;
 
   @include utils.viewport(3) {
-    width: 90%;
+    width: 95%;
     height: 90%;
+    padding: 1rem;
   }
 
   .Heading {
@@ -42,85 +43,132 @@
     }
   }
 
-  .GameControl {
+  .GameArea {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2rem;
+    gap: 1rem;
 
-    .CallButton {
-      width: fit-content;
-      padding: 1rem 2rem;
-      font-size: 1.5rem;
-      border-radius: 3rem;
-      background-color: var(--color-bg);
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: var(--color-bg-hover, var(--color-bg));
-      }
+    @include utils.viewport(3) {
+      flex-direction: column;
+      gap: 2rem;
     }
 
-    .NumberList {
+    .GameControl {
       display: flex;
+      flex-direction: column-reverse;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 2rem;
+      width: 25rem;
 
-      .Number {
+      @include utils.viewport(3) {
+        flex-direction: row;
+        width: 100%;
+        gap: 1rem;
+      }
+
+      .CallButton {
+        width: fit-content;
+        padding: 1rem 2rem;
         font-size: 1.5rem;
-        color: rgba($color: #000, $alpha: 0.5);
-        transition: all 0.3s ease;
+        border-radius: 3rem;
+        background-color: var(--color-bg);
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
 
-        &.Latest {
-          font-size: 2rem;
-          color: white;
-          padding: 1rem;
-          background-color: var(--color-bg);
-          border-radius: 0.5rem;
-          transition: all 0.3s ease;
+        &:hover {
+          background-color: var(--color-bg-hover, var(--color-bg));
+        }
+        @include utils.viewport(3) {
+          width: 30%;
+        }
+      }
+
+      .CalledNumbers {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-direction: column;
+        width: 100%;
+
+        .NumberList {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          width: 100%;
+
+          .Number {
+            font-size: 1.5rem;
+            color: rgba($color: #000, $alpha: 0.5);
+            transition: all 0.3s ease;
+
+            &.Latest {
+              font-size: 5rem;
+              color: white;
+              padding: 1rem 2rem;
+              background-color: var(--color-bg);
+              border-radius: 0.5rem;
+              transition: all 0.3s ease;
+
+              @include utils.viewport(3) {
+                font-size: 3rem;
+              }
+            }
+          }
+        }
+      }
+
+      .StartGame {
+        font-size: 2rem;
+
+        @include utils.viewport(3) {
+          font-size: 1.5rem;
         }
       }
     }
 
-    .StartGame {
-      font-size: 2rem;
+    .BoardSection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      height: 100%;
 
-      @include utils.viewport(3) {
+      .BoardContainer {
+        width: 50rem;
+        height: 50rem;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include utils.viewport(3) {
+          width: 100%;
+          height: 30rem;
+        }
+      }
+
+      .BingoButton {
+        width: fit-content;
+        margin-top: 1rem;
+        padding: 1rem 4rem;
         font-size: 1.5rem;
+        border-radius: 3rem;
+        background-color: var(--color-bg);
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 0 auto;
       }
     }
-  }
-
-  .BoardContainer {
-    width: 50rem;
-    height: 50rem;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    @include utils.viewport(3) {
-      width: 100%;
-      height: 30rem;
-      margin-top: 2rem;
-    }
-  }
-
-  .BingoButton {
-    width: fit-content;
-    margin-top: 1rem;
-    padding: 1rem 4rem;
-    font-size: 1.5rem;
-    border-radius: 3rem;
-    background-color: var(--color-bg);
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 0 auto;
   }
 
   .ReplayButton {
