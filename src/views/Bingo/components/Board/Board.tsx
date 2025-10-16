@@ -65,7 +65,7 @@ export default function Board({ roomId, calledNumbers }: BoardProps) {
             })}
             disabled={cell.markedBy === "free" || !!cell.markedBy}
           >
-            {cell.markedBy === "free" ? "★" : cell.number}
+            {cell.markedBy === "free" ? "FREE" : cell.number}
           </button>
         ))
       )}

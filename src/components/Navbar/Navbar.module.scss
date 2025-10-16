@@ -1,14 +1,16 @@
 .container {
   position: fixed;
   bottom: 1.25rem;
-  right: 1.25rem;
-  z-index: 1000;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
 }
 
 .circle {
   position: absolute;
   bottom: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 3.125rem;
   height: 3.125rem;
   border-radius: 50%;
@@ -21,18 +23,21 @@
   font-size: 1.5rem;
   color: var(--color-primary);
   transition: transform 0.3s ease;
+  pointer-events: auto;
+  z-index: 10000;
 }
 
-.circle:hover {
-  transform: scale(1.1);
-}
+// .circle:hover {
+//   transform: scale(1.1);
+// }
 
 .bar {
   position: absolute;
   bottom: 3.75rem;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   height: 0;
-  width: fit-content;
+  width: 12.5rem;
   background-color: var(--color-bg);
   border-radius: 0.5rem;
   display: flex;

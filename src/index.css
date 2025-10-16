@@ -56,3 +56,25 @@ input {
   background-color: transparent;
   font-family: Montserrat;
 }
+
+/* Remove tap highlight color (iOS Safari / Chrome on Android) */
+button,
+a,
+[role="button"],
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* Remove focus ring when using touch (but keep for keyboard users) */
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Optional: remove iOS inner shadow for buttons */
+button {
+  -webkit-appearance: none;
+  appearance: none;
+}
